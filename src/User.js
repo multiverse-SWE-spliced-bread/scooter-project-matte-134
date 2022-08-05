@@ -20,7 +20,7 @@ class User {
     rentScooter (scooter, chargingDock) {
       if (this.loggedIn === true) {
         if (scooter.docked === true) {
-          if (scooter.charged === 100) {
+          if (scooter.charge === 100) {
             this.scooter = scooter
             scooter.docked = false
             let i = chargingDock.scooters.indexOf(scooter)

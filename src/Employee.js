@@ -1,4 +1,5 @@
 const User = require('./User')
+const Scooter = require('./Scooter')
 
 class Employee extends User {
     constructor (username, password, age, employeeID) {
