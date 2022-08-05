@@ -9,8 +9,16 @@ class Scooter {
   repair () {
     this.isBroken = false
     }
-  }
+  
 
+  charge (chargingDock) {
+    if (this.charge < 100) {
+      if (chargingDock.scooters < chargingDock.maxCap) {
+        chargingDock.scooters.push(this)
+      }
+    }
+  }
+}
 
 class ChargingDock {
   constructor (location) {
@@ -26,4 +34,4 @@ class ChargingDock {
   }
 }
 
-module.exports = { Scooter, ChargingDock };
+module.exports = Scooter, ChargingDock

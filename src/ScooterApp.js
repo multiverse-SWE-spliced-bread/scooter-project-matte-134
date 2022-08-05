@@ -1,7 +1,7 @@
-const { User, Employee } = require('./User');
-const { Scooter, ChargingDock } = require('./Scooter');
+const User = require('./User')
 
 class ScooterApp {
+
   constructor () {
     this.users = []
     this.employees = []
@@ -10,31 +10,30 @@ class ScooterApp {
   }
 
   registerNew (username, password, age) {
-    if (this.users.username !== username) {
-      if (age >= 18) {
-        let newUser = new User (username, password, age)
-        this.users.push(newUser)
-      } else {
-        alert('You must be 18 or over to register')
-      }
+    if (this.users.find(u => u.username === username)) throw new Error('This username already exists')
+    if (age >= 18) {
+      const newUser = new User(username, password, age)
+      this.users.push(newUser)
+      return newUser
     } else {
-      alert('This username already exists')
+      throw new Error('You must be 18 years or older')
     }
   }
 
   login (username, password) {
-    if (this.users.username === username) {
-      if (this.users.password === password) {
+    if (this.users.find(u => u.username === username)) {
+      let i = this.users.indexOf(this.users.find(u => u.username === username))
+      if (this.users[i].password === password) {
         this.users.loggedIn = true
-        alert('You are now logged in')
+        console.log('You are now logged in')
       } else {
-        alert('Your password is incorrect, please try again')
+        console.log('Your password is incorrect, please try again')
       }
     } else {
-      alert("That username doesn't exist")
+      console.log("That username doesn't exist")
     }
   }
 
-  
+}
 
-module.exports = ScooterApp;
+module.exports = ScooterApp
